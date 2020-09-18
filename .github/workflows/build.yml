@@ -1,0 +1,31 @@
+name: build
+
+on: [ push, pull_request ]
+
+jobs:
+  codeception:
+    name: PHP
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress --optimize-autoloader
+
+      - name: PHP CodeStyle
+        run: php ./vendor/bin/phpcs
+
+      - name: PHP Mess Detector
+        run: php ./vendor/bin/phpmd ./src,./public text ./rulesets.xml
+
+      - name: PHP codeception tests
+        run: |
+          php -S 127.0.0.1:8000 public/index.php &
+          php ./vendor/bin/codecept run

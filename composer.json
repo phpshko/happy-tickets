@@ -1,0 +1,30 @@
+{
+    "name": "phpshko/happy-numbers",
+    "config": {
+        "platform": {
+            "php": "7.4"
+        }
+    },
+    "authors": [
+        {
+            "name": "Zinchenko Ruslan",
+            "email": "zinchenckoruslan@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "require-dev": {
+        "codeception/codeception": "^4.1",
+        "phpmd/phpmd": "^2.9",
+        "squizlabs/php_codesniffer": "^3.5",
+        "codeception/module-phpbrowser": "^1.0.0",
+        "codeception/module-asserts": "^1.0.0",
+        "friendsofphp/php-cs-fixer": "^2.16"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Tests\\": "tests/"
+        }
+    }
+}
